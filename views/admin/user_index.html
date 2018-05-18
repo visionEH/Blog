@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="#">管理首页</a></li>
+    <li><a href="#">用户列表</a></li>
+    
+</ol>
+<!-- <h3>用户列表</h3> -->
+<table class="table table-hover table-bordered table-striped " style="width:95% ; margin:auto;">
+  <tr >
+      <th>用户ID</th>
+      <th>账号</th>
+      <th>密码</th>
+      <th>操作</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <th>{{user.Id}}</th>
+    <th>{{user.username}}</th>
+    <th>{{user.password}}</th>
+    <th><a href="#">修改</a></th>
+  </tr>
+  {% endfor %}
+</table>
+
+{% include 'page.html' %}
+{% endblock %}

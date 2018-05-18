@@ -1,0 +1,26 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><a href="#">分类列表</a></li>
+</ol>
+<table class="table table-hover table-bordered table-striped " >
+        <tr >
+            <th>分类ID</th>
+            <th>分类名称</th>
+            <th>操作</th>
+        </tr>
+        {% for category in categorys %}
+        <tr>
+          <th>{{category.Id}}</th>
+          <th>{{category.name}}</th>
+          <th>
+              <a href="#">修改</a>
+              <a href="#">删除</a>
+            </th>
+        </tr>
+        {% endfor %}
+      </table>
+{% endblock %}

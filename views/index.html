@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>博客首页</title>
+  
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <script  src="../public/js/jquery-3.3.1.min.js"></script>
+    <script  src="../public/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+
+    <script>
+       var cur=$("#menu a:first");
+       $("#menu a").each(function(){
+              $(this).on('click',function(){
+                  $(this).parent().addClass('nav-current');
+                  cur=$(this);
+              })
+       });
+    
+    </script>
+</head>
+<body style=" background: #ebebeb;">
+    <header class="main-header" style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- start logo -->
+                        <a title="Ghost 开源博客平台" class="branding" href="http://www.ghostchina.com"><img alt="Ghost 开源博客平台" src="http://static.ghostchina.com/image/b/46/4f5566c1f7bc28b3f7ac1fada8abe.png"></a>
+                        <!-- end logo -->
+                        <h2 class="text-hide">Ghost 是一个简洁、强大的写作平台。你只须专注于用文字表达你的想法就好，其余的事情就让 Ghost 来帮你处理吧。</h2>
+    
+                        <img class="hide" alt="Ghost 博客系统" src="http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg">
+                    </div>
+                </div>
+            </div>
+    </header>
+    <nav class="main-navigation ">
+            <ul class="nav nav-pills menu">
+                <li class="nav-current" role="presentation" style="margin-left:450px">
+                    <a href="/">博客首页</a>
+                </li>
+                {% for category in categorys %}
+                <li role="presentation">
+                    <a href="/category?Id={{category.Id}}">{{category.name}}</a>
+                </li>
+                {% endfor %}
+                <li role="presentation">
+                    <a href="/download/">关于我们</a>
+                </li>
+            </ul>
+    </nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+             
+                <main class="col-md-8 main-content">
+                        {%  for content in contents %}
+                        <article class="post" id="{{content.Id}}">
+                            <div class="post-head">
+                                <h1 class="post-title">
+                                    <a href="/ghost-1-0-released/">{{ content.title}}</a>
+                                </h1>
+                                <div class="post-meta">
+                                    <span class="author">作者：
+                                        <a href="#">{{ userInfo.username}}</a>
+                                    </span> •
+                                    <time title="2017年7月29日星期六凌晨1点45分" class="post-date" datetime="2017年7月29日星期六凌晨1点45分">{{content.date|date('Y年m月d日')}}</time>
+                                    <span class="author">阅读量：
+                                        {{content.reading}}
+                                    </span>
+                                    <span class="author">评论量：
+                                        {{content.reading}}
+                                    </span> 
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>{{content.brief}}</p>
+                            </div>
+                            <div class="post-permalink">
+                                <a class="btn btn-style1" href="#">阅读全文</a>
+                            </div>
+                                
+                            <footer class="post-footer clearfix">
+                                <div class="pull-left tag-list">
+                                    <i class="fa fa-folder-open-o"></i>
+                                </div>
+                                <div class="pull-right share">
+                                </div>
+                            </footer>
+                        </article>
+                        {% endfor %}
+                        <nav class="pagination" role="navigation">
+                                <a class="newer-posts" href="/page?={{page==1?1:page-1}}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                <span class="page-number">第 {{page}} 页 ⁄ 共 {{pages}} 页</span>
+                                <a class="older-posts" href="/page?={{page==pages?pages:page+1}}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                        </nav>
+                    </main>
+                
+        
+               
+                <aside class="col-md-4 sidebar">
+                    <div class="widget">
+                        <h4 class="title">入口</h4>
+                        <div class="content community">
+                           
+                            <p>
+                                <a title="Ghost中文网问答社区"  href="/admin/login"
+                                    target="_blank">
+                                    <i class="fa fa-comments"></i> 管理后台</a>
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    </footer>
+    <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span>Copyright © <a href="http://www.ghostchina.com/">Ghost中文网</a></span> | 
+                        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | 
+                        <span>京公网安备11010802014853</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html
